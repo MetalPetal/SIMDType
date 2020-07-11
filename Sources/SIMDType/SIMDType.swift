@@ -2,12 +2,14 @@
 
 public struct SIMDType {
     
-    public enum ScalarType {
+    public enum ScalarType: CaseIterable {
         case float
         case int
         case uint
-        
-        static let allCases: [ScalarType] = [.float, .int, .uint]
+        case short
+        case ushort
+        case char
+        case uchar
     }
     
     public enum Dimension {
@@ -34,6 +36,52 @@ extension SIMDType.ScalarType {
             return capitalized ? "Float": "float"
         case .uint:
             return capitalized ? "UInt": "uint"
+        case .short:
+            return capitalized ? "Short": "short"
+        case .ushort:
+            return capitalized ? "UShort": "ushort"
+        case .char:
+            return capitalized ? "Char": "char"
+        case .uchar:
+            return capitalized ? "UChar": "uchar"
+        }
+    }
+    
+    public var swiftTypeName: String {
+        switch self {
+        case .int:
+            return "Int"
+        case .float:
+            return "Float"
+        case .uint:
+            return "UInt"
+        case .short:
+            return "Int16"
+        case .ushort:
+            return "UInt16"
+        case .char:
+            return "Int8"
+        case .uchar:
+            return "UInt8"
+        }
+    }
+    
+    public var cTypeName: String {
+        switch self {
+        case .int:
+            return "int"
+        case .float:
+            return "float"
+        case .uint:
+            return "uint"
+        case .short:
+            return "short"
+        case .ushort:
+            return "unsigned short"
+        case .char:
+            return "char"
+        case .uchar:
+            return "unsigned char"
         }
     }
 }
@@ -83,8 +131,6 @@ extension SIMDType {
         SIMDType(scalarType: .float, dimension: .vector(2)),
         SIMDType(scalarType: .float, dimension: .vector(3)),
         SIMDType(scalarType: .float, dimension: .vector(4)),
-        SIMDType(scalarType: .float, dimension: .vector(8)),
-        SIMDType(scalarType: .float, dimension: .vector(16)),
         
         SIMDType(scalarType: .float, dimension: .matrix(2, 2)),
         SIMDType(scalarType: .float, dimension: .matrix(2, 3)),
@@ -99,13 +145,25 @@ extension SIMDType {
         SIMDType(scalarType: .int, dimension: .vector(2)),
         SIMDType(scalarType: .int, dimension: .vector(3)),
         SIMDType(scalarType: .int, dimension: .vector(4)),
-        SIMDType(scalarType: .int, dimension: .vector(8)),
-        SIMDType(scalarType: .int, dimension: .vector(16)),
         
         SIMDType(scalarType: .uint, dimension: .vector(2)),
         SIMDType(scalarType: .uint, dimension: .vector(3)),
         SIMDType(scalarType: .uint, dimension: .vector(4)),
-        SIMDType(scalarType: .uint, dimension: .vector(8)),
-        SIMDType(scalarType: .uint, dimension: .vector(16))
+        
+        SIMDType(scalarType: .short, dimension: .vector(2)),
+        SIMDType(scalarType: .short, dimension: .vector(3)),
+        SIMDType(scalarType: .short, dimension: .vector(4)),
+        
+        SIMDType(scalarType: .ushort, dimension: .vector(2)),
+        SIMDType(scalarType: .ushort, dimension: .vector(3)),
+        SIMDType(scalarType: .ushort, dimension: .vector(4)),
+        
+        SIMDType(scalarType: .char, dimension: .vector(2)),
+        SIMDType(scalarType: .char, dimension: .vector(3)),
+        SIMDType(scalarType: .char, dimension: .vector(4)),
+        
+        SIMDType(scalarType: .uchar, dimension: .vector(2)),
+        SIMDType(scalarType: .uchar, dimension: .vector(3)),
+        SIMDType(scalarType: .uchar, dimension: .vector(4)),
     ]
 }
