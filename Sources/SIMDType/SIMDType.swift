@@ -50,11 +50,11 @@ extension SIMDType.ScalarType {
     public var swiftTypeName: String {
         switch self {
         case .int:
-            return "Int"
+            return "Int32"
         case .float:
             return "Float"
         case .uint:
-            return "UInt"
+            return "UInt32"
         case .short:
             return "Int16"
         case .ushort:
